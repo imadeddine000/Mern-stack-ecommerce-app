@@ -6,7 +6,6 @@ const cors =require('cors')
 const path=require('path')
 const app=express()
 const bcrypt=require('bcrypt')
-const URI='mongodb+srv://imadeddine000:imadA24@cluster0.wurmqyq.mongodb.net/ecommerce?retryWrites=true&w=majority'
 app.use(cors())
 app.use(express.json())
 const cookieParser=require('cookie-parser')
@@ -92,11 +91,7 @@ app.post('/login',(req,res)=>{
 
 })
 
-//middleware
-app.use(express.static(path.join(__dirname,"client","build")))
-//
-app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname,"client","build"))
+app.get('/',(req,res)=>{
+    res.send('hello')
 })
-
-app.listen(3001,()=>{console.log('app running')})
+app.listen(process.env.PORT||3001,()=>{console.log('app running')})
